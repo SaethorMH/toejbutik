@@ -1,7 +1,7 @@
 :root {
-  --background: rgb(255, 252, 216);
-  --primary: rgb(51, 0, 0);
-  --secondary: rgb(251, 255, 236);
+  --background: rgb(39, 0, 94);
+  --primary: rgb(255, 245, 98);
+  --secondary: rgb(62, 0, 124);
 }
 
 * {
@@ -94,6 +94,10 @@ nav {
   padding: 20px;
   background-color: var(--secondary);
   color: var(--primary);
+  transition: 0.2s all ease;
+}
+.product:hover {
+  transform: scale(1.01);
 }
 
 .pName,
@@ -155,24 +159,26 @@ nav {
 .showcase {
   background-color: var(--secondary);
   place-self: center;
-  padding: 10px;
+  padding: 20px;
   width: 70vw;
   max-width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: red 5px solid;
+  border-radius: 5px;
+  /* border: red 5px solid; */
 }
 
 .sText {
   display: grid;
   grid-template-rows: 1fr auto 1fr;
+  color: var(--primary);
 }
 .sText > h1 {
   place-self: start center;
   grid-row: 1/2;
   grid-column: 1/2;
 
-  font-size: 4rem;
+  font-size: 3rem;
 }
 .sText > h2 {
   grid-row: 1/2;
@@ -195,4 +201,14 @@ nav {
   place-self: center;
   height: 3rem;
   padding: 5px;
+  background-color: var(--primary);
+  color: var(--background);
+  font-weight: 900;
+}
+.sText > button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.sText > button:active {
+  background-color: aqua;
 }
