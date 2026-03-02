@@ -1,0 +1,54 @@
+const params = new URLSearchParams(window.location.search);
+
+const id = params.get("id");
+const category = params.get("category");
+
+console.log("id:", id);
+console.log("category:", category);
+
+// const id = 1528;
+const productURL = "https://kea-alt-del.dk/t7/api/products/" + id;
+const productcontainer = document.querySelector("#productContainer");
+
+function getData() {
+  fetch(productURL).then((res) => res.json().then((data) => show(data)));
+  console.log("getter data");
+}
+
+function show(data) {
+  productcontainer.innerHTML = `
+    <img src="https://kea-alt-del.dk/t7/images/webp/1000/${id}.webp" alt="Produktbillede">
+    
+        <div class="sText">
+            <h1 id="ppName">${data.productdisplayname}</h1>
+            <h3 id="ppPrice">${data.price}kr</h3>
+            
+            <div id="ppB">
+                <h2 id="ppBrand">${data.brandname}</h2>
+                <img id="ppBrandP" src="${data.brandimage}" alt="brand logo">
+           </div>
+                <p id="ppBrandD">${data.brandbio}</p>
+            
+            <h2 id="ppSoldOut">SOLDOUT</h2>
+            <p id="lager">1-2 tilbage på lager</p>
+            <button id="addCart">Add to basket</button>
+        </div>
+
+  `;
+  if (data.brandimage == null) {
+    document.querySelector("#ppBrandP").classList.add("hidden");
+  }
+  if (data.soldout) {
+    document.querySelector("#addCart").classList.add("hidden");
+    document.querySelector("#lager").classList.add("hidden");
+  } else {
+    document.querySelector("#ppSoldOut").classList.add("hidden");
+  }
+  if (data.brandbio == null) {
+    document.querySelector("#ppBrandD").classList.add("hidden");
+  }
+
+  console.log("Data inputted");
+}
+
+getData();
