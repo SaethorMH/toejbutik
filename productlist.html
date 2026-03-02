@@ -6,27 +6,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Produkt liste</title>
+    <link rel="icon" type="image/x-icon" href="./logo.svg">
+
+
+    <title>Product list</title>
 
 
 </head>
 
 <body>
     <header>
-        <img class="logo" src="https://picsum.photos/50/50" alt="">
+        <img class="logo" src="./logo.svg" alt="logo">
         <nav>
             <a class="menu" href="./index.html">Katagorier</a>
             <a class="menu" href="./productlist.html">Produkt liste</a>
             <a class="menu" href="./product.html">Produkt</a>
         </nav>
     </header>
+    <div id="limitBox">
+        <label for="limitSelect">Items pr page:</label>
+        <select name="limit" id="limitSelect">
+            <option value="8"></option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+
+        </select>
+    </div>
+
     <div id="p_container">
 
 
     </div>
-    <div class="buttonContainer">
-        <button class="button" id="prev">previous</button>
-        <button class="button" id="next">next</button>
+    <div id="buttonContainer">
+        <button class="button" id="prev">Prev</button>
+        <button class="button" id="next">Next</button>
     </div>
     <p id="pageCounter"></p>
 

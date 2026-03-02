@@ -2,29 +2,33 @@
 <html lang="da">
 
 <head>
-    <meta name="robots" content="noindex">
+    <meta name=”robots” content=”noindex”>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="./logo.svg">
-    <title>Product</title>
+    <title>Produkt liste</title>
 
 
 </head>
 
 <body>
     <header>
-        <img class="logo" src="./logo.svg" alt="logo">
+        <img class="logo" src="https://picsum.photos/50/50" alt="">
         <nav>
             <a class="menu" href="./index.html">Katagorier</a>
             <a class="menu" href="./productlist.html">Produkt liste</a>
             <a class="menu" href="./product.html">Produkt</a>
         </nav>
     </header>
+    <div id="p_container">
 
-    <div id="productContainer">
 
     </div>
+    <div class="buttonContainer">
+        <button class="button" id="prev">Prev</button>
+        <button class="button" id="next">Next</button>
+    </div>
+    <p id="pageCounter"></p>
 
     <footer>
         <p>Lavet af Sæthór Hjálmarsson 2026</p>
@@ -34,6 +38,6 @@
         </ul>
     </footer>
 </body>
-<script src="./scripts/product.js"></script>
+<script src="./scripts/productlist.js"></script>
 
 </html>

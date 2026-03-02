@@ -1,23 +1,39 @@
 const params = new URLSearchParams(window.location.search);
 
-const category = params.get("category");
+let category = params.get("category");
+let start = Number(params.get("start"));
+let limit = Number(params.get("limit"));
+if (limit == 0) {
+  limit = 8;
+}
+if (start == 0) {
+  start = 0;
+}
+
+let listURL;
 
 console.log("category:", category);
-
+console.log("start:", start);
+console.log("limit:", limit);
 let page = 0;
-let pageNr = 1;
+let pageNr = start / limit;
 
 // const fetchUrl = category
 // ? `https://kea-alt-del.dk/t7/api/products?category=${encodeURIComponent(category)}`
 // : "https://kea-alt-del.dk/t7/api/products";
 
-let listURL = category ? "https://kea-alt-del.dk/t7/api/products?category=" + category + "&limit=8&start=" + page : "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
-let apiURL = "https://kea-alt-del.dk/t7/api/products?limit=44000";
-
 const pContainer = document.querySelector("#p_container");
 const pageCounter = document.querySelector("#pageCounter");
 function getProducts() {
-  listURL = category ? "https://kea-alt-del.dk/t7/api/products?category=" + category + "&limit=8&start=" + page : "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
+  // listURL = category
+  //   ? "https://kea-alt-del.dk/t7/api/products?category=" + category + "&limit=" + limit + "&start=" + start
+  //   : "https://kea-alt-del.dk/t7/api/products?limit=" + limit + "&start=" + start;
+
+  if (category === null || category === "null" || category === "") {
+    listURL = "https://kea-alt-del.dk/t7/api/products?limit=" + limit + "&start=" + start;
+  } else {
+    listURL = "https://kea-alt-del.dk/t7/api/products?category=" + category + "&limit=" + limit + "&start=" + start;
+  }
   console.log("Get Produckt kører page er " + page + listURL);
   fetch(listURL).then((res) => res.json().then((products) => showProducts(products)));
 }
@@ -62,40 +78,72 @@ function showProducts(products) {
   });
 }
 
+const bContainer = document.querySelector("#buttonContainer");
+
+function pageButtons() {
+  let nStart = start + limit;
+  let pStart = start - limit;
+  bContainer.innerHTML = `
+  <a class="button" id="prev" href="./productlist.html?category=${category}&limit=${limit}&start=${pStart}">Prev</a>
+  <a class="button" id="next" href="./productlist.html?category=${category}&limit=${limit}&start=${nStart}">Next</a>
+
+`;
+}
+
+pageButtons();
 getProducts();
-pageNumber();
 
-const nextPage = document.querySelector("#next");
-const prevPage = document.querySelector("#prev");
+// const nextPage = document.querySelector("#next");
+// const prevPage = document.querySelector("#prev");
 
-function nPage() {
-  page += 8;
-  pageNr++;
-  //   const listURL = "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
+// function nPage() {
+//   page += 8;
+//   pageNr++;
+//   //   const listURL = "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
 
-  console.log("next page");
-  console.log(listURL);
+//   console.log("next page");
+//   console.log(listURL);
 
-  pContainer.innerHTML = "";
-  getProducts();
-  pageNumber();
+//   pContainer.innerHTML = "";
+//   getProducts();
+//   pageNumber();
+// }
+
+// function pPage() {
+//   page -= 8;
+//   pageNr--;
+//   //   const listURL = "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
+
+//   console.log("prev page");
+//   console.log(listURL);
+
+//   pContainer.innerHTML = "";
+//   getProducts();
+//   pageNumber();
+// }
+
+// nextPage.addEventListener("click", nPage);
+// prevPage.addEventListener("click", pPage);
+
+let limitor = document.querySelector("#limitSelect");
+console.log(limitor.value);
+limitor.addEventListener("change", changelimit);
+function changelimit() {
+  limit = limitor.value;
+  console.log("limit is now: " + limitor.value);
+  location.href = `./productlist.html?category=${category}&limit=${limit}&start=0`;
+  limitor.value = limit;
 }
 
-function pPage() {
-  page -= 8;
-  pageNr--;
-  //   const listURL = "https://kea-alt-del.dk/t7/api/products?limit=8&start=" + page;
-
-  console.log("prev page");
-  console.log(listURL);
-
-  pContainer.innerHTML = "";
-  getProducts();
-  pageNumber();
+/********************************* DET HER DRÆBRER LOADTIME **********************************/
+let apiURL = `https://kea-alt-del.dk/t7/api/products?category=${category}&limit=9999`;
+fetch(apiURL).then((res) => res.json().then((products) => howMany(products)));
+function howMany(products) {
+  const total = products.count;
+  console.log(total);
+  let totpages = Math.ceil(products.length / limit);
+  pageCounter.innerHTML = `Page ${pageNr} of ${totpages}`;
+  console.log("Der er " + products.length + "objecter i katagorien " + category);
 }
 
-function pageNumber() {
-  pageCounter.innerHTML = `Page ${pageNr} of 126`;
-}
-nextPage.addEventListener("click", nPage);
-prevPage.addEventListener("click", pPage);
+/*********************************************************************************************/

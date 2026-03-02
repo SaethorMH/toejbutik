@@ -12,7 +12,7 @@ function showCategories(catas) {
   catas.forEach((a) => {
     console.log(a);
     cContainer.innerHTML += `
-        <a href="./productlist.html?category=${a.category}" class="catagory">${a.category}</a>
+        <a href="./productlist.html?category=${a.category}&limit=8&start=0" class="catagory">${a.category}</a>
     `;
   });
 }
