@@ -1,12 +1,16 @@
 const params = new URLSearchParams(window.location.search);
 
-const id = params.get("id");
-const category = params.get("category");
+let id = params.get("id");
+const category = Number(params.get("category"));
 
+if (id === null || id === "null" || id === "") {
+  id = 1528;
+}
 console.log("id:", id);
 console.log("category:", category);
 
 // const id = 1528;
+
 const productURL = "https://kea-alt-del.dk/t7/api/products/" + id;
 const productcontainer = document.querySelector("#productContainer");
 
