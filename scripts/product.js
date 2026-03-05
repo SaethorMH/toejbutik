@@ -28,11 +28,7 @@ function show(data) {
     
         <div class="sText">
             <h1 id="ppName">${data.productdisplayname}</h1>
-            <div>
-            <h3 id="ppPrice">${data.price}kr</h3>
-            <h3 id="ppSale" class="hidden">${data.price - data.discount}kr</h3>
             
-            </div>
             
             <div id="ppB">
                 <h2 id="ppBrand">${data.brandname}</h2>
@@ -42,8 +38,16 @@ function show(data) {
                 <p id="ppBrandD">${data.description}</p>
             
             <h2 id="ppSoldOut">SOLDOUT</h2>
+            <div>
+            <div id="pppPrices">
+            <h3 id="ppPrice">${data.price}kr</h3>
+            <h3 id="ppSale" class="hidden">${data.price - data.discount}kr</h3>
+            
+            </div>
             
             <button id="addCart">Add to basket</button>
+                        </div>
+
             <p id="lager">1-2 tilbage på lager</p>
         </div>
 
