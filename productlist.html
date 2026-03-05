@@ -12,28 +12,89 @@
     <title>Product list</title>
 
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Doodle+Shadow&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body>
     <header>
         <a href="./index.html"><img class="logo" src="./logo.svg" alt="logo"></a>
         <nav>
-            <a class="menu" href="./index.html">Katagorier</a>
-            <a class="menu" href="./productlist.html">Produkt liste</a>
-            <a class="menu" href="./product.html">Produkt</a>
+            <a class="menu" href="./index.html">Categories</a>
+            <a class="menu" href="./productlist.html">Product List</a>
+            <a class="menu" href="./product.html">Product</a>
         </nav>
     </header>
-    <div id="limitBox">
-        <label for="limitSelect">Items pr page:</label>
-        <select name="limit" id="limitSelect">
-            <option value="8"></option>
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="32">32</option>
+    <h1 id="cName">Placeholder</h1>
+    <div id="boxHolder">
+        <div id="limitBox">
+            <label for="limitSelect">Items pr page:</label>
+            <select name="limit" id="limitSelect">
+                <option value="8">x</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="32">32</option>
 
-        </select>
+            </select>
+        </div>
+        <div id="filterbox">
+            <div id="sortBox">
+                <label for="sortSelect">Sort by:</label>
+                <select name="sort" id="sortSelect">
+                    <option value=""></option>
+                    <option value="a.price - b.price">Price - Low to high</option>
+                    <option value="b.price - a.price">Price - High to low</option>
+                    <option value="a.productdisplayname.localeCompare(b.productdisplayname)">Name - A to Z</option>
+                    <option value="b.productdisplayname.localeCompare(a.productdisplayname)">Name - Z to A</option>
+
+                    <!-- <option value="16">16</option>
+            <option value="32">32</option> -->
+
+                </select>
+            </div>
+            <div id="genderBox">
+                <label for="genderSelect">Gender:</label>
+                <select name="gender" id="gender">
+                    <option value="null">Any</option>
+                    <option value="Women">Women</option>
+                    <option value="Men">Men</option>
+                    <option value="Unisex">Unisex</option>
+                </select>
+
+            </div>
+            <div>
+                <label for="discountBox">Only Discounted items:</label>
+                <input type="checkbox" name="discountBox" id="discountBox">
+            </div>
+
+        </div>
+
     </div>
 
+    <!-- <fieldset>
+        <legend>Gender selection:</legend>
+
+        <div>
+            <input type="radio" id="any" name="gender" value="null">
+            <label for="any">All</label>
+        </div>
+        <div>
+            <input type="radio" id="women" name="gender" value="Women">
+            <label for="women">Women</label>
+        </div>
+        <div>
+            <input type="radio" id="men" name="gender" value="Men" checked>
+            <label for="men">Men</label>
+        </div>
+        <div>
+            <input type="radio" id="unisex" name="gender" value="Unisex">
+            <label for="unisex">Unisex</label>
+        </div>
+    </fieldset> -->
     <div id="p_container">
 
 

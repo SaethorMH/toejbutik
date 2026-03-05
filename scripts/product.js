@@ -20,8 +20,11 @@ function getData() {
 }
 
 function show(data) {
+  if (data.discount > 0) {
+    productcontainer.classList.add("onsale");
+  }
   productcontainer.innerHTML = `
-    <img src="https://kea-alt-del.dk/t7/images/webp/1000/${id}.webp" alt="Produktbillede">
+    <img id="ppImg" src="https://kea-alt-del.dk/t7/images/webp/1000/${id}.webp" alt="Produktbillede">
     
         <div class="sText">
             <h1 id="ppName">${data.productdisplayname}</h1>
@@ -35,7 +38,7 @@ function show(data) {
                 <h2 id="ppBrand">${data.brandname}</h2>
                 <img id="ppBrandP" src="${data.brandimage}" alt="brand logo">
            </div>
-                <p id="ppBrandD">${data.brandbio}</p>
+                <p id="ppBrandB">${data.brandbio}</p>
                 <p id="ppBrandD">${data.description}</p>
             
             <h2 id="ppSoldOut">SOLDOUT</h2>
