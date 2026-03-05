@@ -8,10 +8,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family:
-    futura regular,
-    Courier,
-    monospace;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
 }
 html {
   min-height: 100%;
@@ -45,15 +43,19 @@ nav {
 }
 .menu {
   text-decoration: none;
-  background-color: var(--primary);
+  background-color: var(--tertiary);
   color: var(--background);
-  margin: 0px 10px;
+  margin: 15px;
   place-self: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
-  font-size: calc(3px + 1.5vw);
+  font-size: calc(2px + 1.5vw);
+  transition: 0.1s;
 }
-
+.menu:hover {
+  transform: scale(1.05);
+  background-color: var(--primary);
+}
 footer {
   display: flex;
   justify-content: space-between;
@@ -98,27 +100,28 @@ footer > * {
 
   text-decoration: none;
   color: var(--primary);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 
   transition: 0.2s ease-in-out;
 
   box-shadow: 0px 0px 20px var(--tertiary);
+  font-family: "Rubik Doodle Shadow", system-ui;
 }
 .catagory:hover {
   background-color: darkgrey;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.441);
-  font-size: 2.7rem;
+  transform: scale(1.1);
 }
 
 #p_container {
-  width: 70%;
+  max-width: 1000px;
   margin: auto;
   align-items: center;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
-  gap: 25px;
+  gap: 10px;
 }
 .product {
   /* height: 100px; */
@@ -132,6 +135,10 @@ footer > * {
   background-color: var(--tertiary);
   color: var(--secondary);
   transition: 0.2s all ease;
+  height: 100%;
+  max-width: 300px;
+
+  overflow: hidden;
 }
 .product:hover {
   transform: scale(1.01);
@@ -143,52 +150,66 @@ footer > * {
 .sPrice {
   grid-row: 2/3;
   grid-column: 1/2;
-  padding: 10px;
+  padding: 5px;
 }
 .pName {
-  font-size: 1.3rem;
-  max-width: 60%;
+  font-size: 0.9rem;
+  max-width: 20ch;
+  line-height: 1rem;
+  overflow: hidden;
+  place-self: end left;
+  /* margin-bottom: -px; */
 }
 .price {
   place-self: start right;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  padding-top: 0;
 }
 .sPrice {
   display: none;
   place-self: start right;
-  margin-top: 1.5rem;
-  font-size: 1.5rem;
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
   font-weight: 700;
+  padding-top: 0;
 }
 .brand {
-  place-self: end left;
+  place-self: start left;
   font-size: 1.2rem;
+  padding-top: 1px;
 }
 .pImg {
   grid-row: 1/2;
   grid-column: 1/2;
+  place-self: center;
   img {
     border-radius: 10px 10px 0 0;
   }
 }
-.outsold {
-  .soldout {
-    display: flex;
-  }
-}
+
 .onsale {
   .sale {
     display: block;
   }
   .price {
     text-decoration: line-through;
+    font-weight: 300;
   }
   .sPrice {
     display: block;
+    color: red;
   }
 }
-
+.outsold {
+  .soldout {
+    display: flex;
+  }
+  .sale {
+    display: none;
+  }
+}
 .soldout {
+  box-shadow: none;
   display: none;
   background-color: rgba(44, 44, 44, 0.8);
   grid-row: 1/3;
@@ -196,33 +217,40 @@ footer > * {
   z-index: 2;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 3rem;
   font-weight: 900;
   color: white;
+  pointer-events: none;
 }
 
 .sale {
   display: none;
-  background-color: red;
-  height: 7%;
-  padding: 15px;
-  font-size: 1.5rem;
+  background-color: rgba(255, 0, 0, 0.7);
+  width: 200px;
+  padding: 10px;
+  font-size: 1rem;
   color: white;
   grid-row: 1/2;
   grid-column: 1/2;
   place-self: start right;
-  border-radius: 0 0 0 20px;
+  margin-right: -55px;
+  margin-top: 20px;
+  /* border-radius: 0 0 0 20px; */
+  transform: rotate(35deg);
+  text-align: center;
 }
 
 #productContainer {
-  background-color: var(--secondary);
+  background-color: var(--background);
   margin: auto;
   gap: 10px;
   /* padding: 20px; */
-  width: 70vw;
-  max-width: 1200px;
+  width: 80vw;
+  max-width: 1400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
   border-radius: 10px;
   /* border: red 5px solid; */
 }
@@ -237,9 +265,16 @@ footer > * {
 }
 
 .sText {
-  display: grid;
+  display: subgrid;
+
+  padding: 50px;
   justify-items: center;
   color: var(--primary);
+  grid-row: 1/-1;
+}
+#ppImg {
+  grid-row: 1/3;
+  aspect-ratio: 9/16;
 }
 #ppName {
   font-size: calc(8px + 2vw);
@@ -259,11 +294,12 @@ footer > * {
 #ppPrice,
 #ppSale {
   font-size: calc(8px + 1.2vw);
-  font-weight: 100;
+  font-weight: 300;
 }
 #ppBrandB {
-  background-color: aqua;
+  margin-top: 7px;
 }
+
 #ppBrandP {
   width: 40px;
   height: 40px;
@@ -275,7 +311,7 @@ footer > * {
 
   background-color: var(--primary);
   color: var(--background);
-  font-size: calc(8px + 1.2vw);
+  font-size: 1.5rem;
 
   border-radius: 7px;
   transition: 0.1s;
@@ -292,17 +328,17 @@ footer > * {
   display: block;
   padding: 10px;
   width: 60px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 5px;
-  background-color: var(--primary);
+  background-color: var(--tertiary);
   text-decoration: none;
   color: var(--background);
   text-align: center;
   transition: 0.1s;
 }
 .button:hover {
-  transform: scale(1.1);
-  background-color: var(--tertiary);
+  transform: scale(1.05);
+  background-color: var(--primary);
 }
 
 #buttonContainer {
@@ -326,8 +362,40 @@ footer > * {
 }
 
 #limitBox {
-  place-self: center;
+  /* place-self: center; */
+}
+#boxHolder {
+  margin: auto;
+  display: flex;
+  margin-bottom: 1rem;
+
+  max-width: 1000px;
+  place-content: space-between;
+}
+#filterBox {
+  display: flex;
+}
+select {
+  border-radius: 7px;
+  width: 100px;
 }
 label {
   color: var(--primary);
+}
+
+#cName {
+  margin-bottom: 4rem;
+  color: var(--primary);
+  place-self: center;
+  font-size: 4rem;
+  font-family: "Rubik Doodle Shadow", system-ui;
+}
+
+fieldset {
+  width: 100px;
+  color: var(--tertiary);
+  position: absolute;
+  place-self: center left;
+  margin-left: 20px;
+  padding: 10px;
 }
